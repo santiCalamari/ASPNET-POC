@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="KhensysModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Permisos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="nombreEmpleado" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="apellidoEmpleado" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="fecha" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="tipoPermisoId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TipoPermisos" Relationship="Self.FK_Permisos_TipoPermisos" FromRole="Permisos" ToRole="TipoPermisos" />
+  </EntityType>
+  <EntityType Name="TipoPermisos">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Permisos" Relationship="Self.FK_Permisos_TipoPermisos" FromRole="TipoPermisos" ToRole="Permisos" />
+  </EntityType>
+  <Association Name="FK_Permisos_TipoPermisos">
+    <End Role="TipoPermisos" Type="Self.TipoPermisos" Multiplicity="1" />
+    <End Role="Permisos" Type="Self.Permisos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TipoPermisos">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Permisos">
+        <PropertyRef Name="tipoPermisoId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="KhensysEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Permisos" EntityType="Self.Permisos" />
+    <EntitySet Name="TipoPermisos" EntityType="Self.TipoPermisos" />
+    <AssociationSet Name="FK_Permisos_TipoPermisos" Association="Self.FK_Permisos_TipoPermisos">
+      <End Role="TipoPermisos" EntitySet="TipoPermisos" />
+      <End Role="Permisos" EntitySet="Permisos" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<Permisos_khensys.Models.Permisos>
+
+@{
+    ViewBag.Title = "Listado";
+}
+
+<h2> Permisos solicitados</h2>
+
+<p>
+    @Html.ActionLink("Solicitar nuevo permiso", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Apellido
+        </th>
+        <th>
+            Fecha del Permiso
+        </th>
+        <th>
+            Descripcion
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nombreEmpleado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.apellidoEmpleado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.fecha)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TipoPermisos.Descripcion)
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
