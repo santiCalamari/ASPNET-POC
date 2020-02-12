@@ -1,3 +1,3 @@
-﻿# Prueba de concepto ASP .NET
+﻿# Prueba de concepto
  
- # Utiliza razor y MVC app
+ #  Aplicacion MVC con ASP .NET. Utiliza Razor y SQL Server
